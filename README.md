@@ -30,9 +30,11 @@ Keeps exception logs of any errors with the Rest API/functions/program in a txt 
 Identifies the overal bigger picture, 1-2 Hr candls to return trend: 'UP', 'DWN' or 'SIDEWYS'
 
 You can build (and easily write) your own strategy, could be Moving averages, MACD, VWAP or etc. based 
-# (email me: carlo.fernandezben@gmail.com to write one.)
+# NOT TESTED, BACKTRACKED NOR PROFITABLE ( email me: carlo.fernandezben@gmail.com to write one )
 
-Goes Long or Short depending on the strategy, and corrects the position in case there is any fault or exception in the process.
+Goes Long or Short depending on the strategy chosen, starts looking for other pairs faster to trade when volatility starts.
+
+Revises and corrects the position in case there is any fault or exception in the process.
 
 Plots and saves an .html file of the chart when going long or short.
 
