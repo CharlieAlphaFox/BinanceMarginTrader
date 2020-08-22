@@ -26,7 +26,7 @@ Strategy= Define your own. To use at your own risk/peril. Trades in Margin with 
 
 Logs in with your API keys in another file. Consider a .ini for more safety.
 
-Keeps exception logs of any errors with the Rest API/functions/program in a txt file.
+Keeps exception logs of any errors with the Rest API/functions/program in a txt file with traceback.
 
 Identifies the overal bigger picture, 1-2 Hr candls to return trend: 'UP', 'DWN' or 'SIDEWYS'
 
@@ -49,13 +49,13 @@ Project is created with:
 
 	
 ## Setup
-To run this project, install python and run in a virtual env the needed libraries:
+To run this project, install python and run in a virtual env the needed libraries can be installed with pip:
 
 ```
 $ pandas
 $ numpy
 $ pyti
-$ python-binance or pythonic binance
+$ python-binance or pythonic binance (https://python-binance.readthedocs.io/en/latest/binance.html)
 $ binance
 See others for indicators as pandas-ta
 ```
