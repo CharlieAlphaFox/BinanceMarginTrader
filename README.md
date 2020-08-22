@@ -31,7 +31,7 @@ Keeps exception logs of any errors with the Rest API/functions/program in a txt 
 Identifies the overal bigger picture, 1 Hr candls or 2hr candls if sideways to return trend: 'UP', 'DWN' or 'SIDEWYS'
 
 You can build (and easily write) your own strategy, could be Moving averages, MACD, VWAP or etc. based 
-# NOT TESTED, BACKTRACKED NOR PROFITABLE ( email me: carlo.fernandezben@gmail.com to write one )
+# NOT TESTED, Strategy runs, most likely not profitable ( email me: carlo.fernandezben@gmail.com to write one )
 
 Goes Long or Short depending on the trend and the strategy chosen, starts looking for other pairs faster to trade when volatility increases.
 
