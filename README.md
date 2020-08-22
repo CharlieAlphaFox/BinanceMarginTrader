@@ -23,7 +23,7 @@ Strategy= Define your own. To use at your own risk/peril. Trades in Margin with 
 
 ## Functions available:
 
-Safely logs in with your API keys in another file.
+Logs in with your API keys in another file. Consider a .ini for more safety.
 
 Keeps exception logs of any errors with the Rest API/functions/program in a txt file.
 
