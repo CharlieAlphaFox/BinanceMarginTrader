@@ -57,6 +57,8 @@ $ numpy
 $ pyti
 $ python-binance or pythonic binance 
 $ binance
+$ plotly
+
 See others for indicators as pandas-ta
 ```
 python-binance (https://python-binance.readthedocs.io/en/latest/binance.html)
