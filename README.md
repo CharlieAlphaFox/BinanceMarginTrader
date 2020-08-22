@@ -55,7 +55,8 @@ To run this project, install python and run in a virtual env the needed librarie
 $ pandas
 $ numpy
 $ pyti
-$ python-binance or pythonic binance (https://python-binance.readthedocs.io/en/latest/binance.html)
+$ python-binance or pythonic binance 
 $ binance
 See others for indicators as pandas-ta
 ```
+python-binance (https://python-binance.readthedocs.io/en/latest/binance.html)
