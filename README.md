@@ -40,7 +40,7 @@ Plots and saves an .html file of the chart when going long or short.
 
 Continuosly checks the open long or short orders and cancels them if trend is oposite to the position or any other desired price condition.
 
-Use of any DB is not necessary/optional.
+Use of any DB is not necessary/optional. All in one fast/lite program to trade and leave running when profitable.
 	
 ## Technologies
 Project is created with:
