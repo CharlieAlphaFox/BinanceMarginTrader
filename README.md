@@ -33,7 +33,7 @@ Identifies the overal bigger picture, 1 Hr candls or 2hr candls if sideways to r
 You can build (and easily write) your own strategy, could be Moving averages, MACD, VWAP or etc. based 
 # NOT TESTED, BACKTRACKED NOR PROFITABLE ( email me: carlo.fernandezben@gmail.com to write one )
 
-Goes Long or Short depending on the strategy chosen, starts looking for other pairs faster to trade when volatility starts.
+Goes Long or Short depending on the trend and the strategy chosen, starts looking for other pairs faster to trade when volatility increases.
 
 Revises and corrects the position in case there is any fault or exception in the process.
 
