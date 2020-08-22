@@ -34,6 +34,8 @@ You can build (and easily write) your own strategy, could be Moving averages, MA
 
 Goes Long or Short depending on the strategy, and corrects the position in case there is any fault or exception in the process.
 
+Plots and saves an .html file of the chart when going long or short.
+
 Continuosly checks the open long or short orders and cancels them if trend is oposite to the position or any other desired price condition.
 
 Use of any DB is not necessary/optional.
