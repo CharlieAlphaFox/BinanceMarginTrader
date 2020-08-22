@@ -19,7 +19,7 @@ LINK ERC20 0x914a22f07a8cda8b4ac149beadb38743b1edc106
 Margin Trading here is made simpler! =) You can easily open an account, I get 20% of the fees: https://www.binance.com/en/register?ref=26095868
 We both get 10% of the fees: https://www.binance.com/en/register?ref=XGD25UFF
 
-Strategy= Define your own. To use at your own risk/peril.
+Strategy= Define your own. To use at your own risk/peril. Trades in Margin with BUSD pairs as they have lower fees, but the pairs can be changed to any MT pair you like.
 
 ## Functions available:
 
