@@ -1,5 +1,5 @@
 # BinanceMarginTrader
-Binance Marging Trading defined in easy functions
+Binance Marging Trading defined in easy functions. You can go long or short assets weather they increase in price or not.
 ## Table of contents
 * [Technologies](#technologies)
 * [Setup](#setup)
@@ -24,25 +24,25 @@ Strategy= Define your own. To use at your own risk/peril. Trades in Margin with 
 
 ## Functions available:
 
-Logs in with your API keys in another file. Consider a .ini for more safety.
+Logs in with your API keys from another file (bikeys.py). Consider a .ini for added security.
 
 Keeps exception logs of any errors with the Rest API/functions/program in a txt file with traceback.
 
 Identifies the overal bigger picture, 1 Hr candls or 2hr candls if sideways to return trend: 'UP', 'DWN' or 'SIDEWYS'
 
 You can build (and easily write) your own strategy, could be Moving averages, MACD, VWAP or etc. based 
-# NOT TESTED, Strategy runs, most likely not profitable ( email me: carlo.fernandezben@gmail.com to write one )
+# NOT TESTED: Strategy present here runs, most likely not profitable (email me: carlo.fernandezben@gmail.com to write one)
 
-Goes Long or Short depending on the trend and the strategy chosen, starts looking for other pairs faster to trade when volatility increases.
+Goes Long or Short depending on the trend and the strategy chosen, and starts looking for similar pairs faster to trade when volatility increases.
 
 Revises and corrects the position in case there is any fault or exception in the process.
 
 Plots and saves an .html file of the chart when going long or short.
 
-Continuosly checks the open long or short orders and cancels them if trend is oposite to the position or any other desired price condition.
+Continuosly checks the open long TP or short orders and cancels them if trend is oposite to the position or any other desired price condition.
 
 Use of any DB is not necessary/optional. All in one fast/lite program to trade and leave running when profitable.
-	
+
 ## Technologies
 Project is created with:
 * python: 3.7
