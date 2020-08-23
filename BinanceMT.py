@@ -29,7 +29,7 @@ client = Client(api_key=bikeys.Pass, api_secret=bikeys.Sec)
 global trend
 
 pairs = ['BTCBUSD', 'BCHBUSD', 'LTCBUSD', 'ETHBUSD', 'ETCBUSD', 'XRPBUSD',
-'EOSBUSD', 'LINKBUSD', 'XTZBUSD', 'BNBBUSD', 'ZECBUSD', 'DASHBUSD', 'EOSBUSD',
+'EOSBUSD', 'LINKBUSD', 'XTZBUSD', 'BNBBUSD', 'ZECBUSD', 'ZILBUSD', 'EOSBUSD',
  'ALGOBUSD', 'ADABUSD', 'SXPBUSD']
 
 def Trend(pair):
