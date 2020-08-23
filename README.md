@@ -1,8 +1,6 @@
 # BinanceMarginTrader
 Binance Marging Trading defined in easy functions. You can go long or short assets weather they increase in price or not.
 ## Skip to
-* [Disclaimer](#NOT TESTED: Strategy present here runs, most likely not profitable (email me: carlo.fernandezben@gmail.com to write one))
-* [Technologies](#technologies)
 * [Setup](#setup)
 
 ## General info
