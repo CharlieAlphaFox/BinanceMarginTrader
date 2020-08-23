@@ -114,7 +114,7 @@ def Trend(pair):
         if float(price) < slowsma and oversold:
             trend = 'DWN'
     if trend == 'SIDEWYS':
-        print(f'Trend is Sideways for {altc} on 2h, going for 2h chart')
+        print(f'Trend is Sideways for {altc} on 2h, going for 4h chart')
         if trend_count < 1:
             interval = Client.KLINE_INTERVAL_4HOUR
             trend_count +=1
@@ -139,7 +139,8 @@ def Strategy(pair): # Gets precise Precise data and act from it.
     altc = pair[:-4]
     ticker = client.get_symbol_ticker(symbol=pair)
     price = ticker['price']
-
+    
+    # Pivots the daily candles in case your strategy requires daily a pivot:
     utc = datetime.datetime.utcnow()  # time now
     mid_utc = utc.replace(hour=0, minute=0, second=0, microsecond=0)
     mins_utc = int((mid_utc-utc).total_seconds() / 60.0)*-1 # time in minutes from UTC
@@ -181,7 +182,10 @@ def Strategy(pair): # Gets precise Precise data and act from it.
     open = np.array(open)
     l_open = float(open[-1])
 
-    fastsma = sma(close, 7)
+    if candls_utc < 7:
+        fastsma = sma(close, int(candls_utc))
+    else:
+        fastsma = sma(close, 7)
     fastsma = float(fastsma[-1])
     fiftysma = sma(close, 50)
     fiftysma = float(fiftysma[-1])
