@@ -1,2 +1,2 @@
-Pass = 'YourAPIKeyGoesHere'
+Pass = 'YourBinanceAPIKeyGoesHere'
 Sec = 'YourAPIsecretGoesHere'
