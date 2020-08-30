@@ -21,34 +21,34 @@ We both get 10% of the fees: https://www.binance.com/en/register?ref=XGD25UFF
 
 Strategy= Define your own. To use at your own risk/peril. Trades in Margin with BUSD pairs as they have lower fees, but the pairs can be changed to any MT pair you like.
 
-## Functions available:
+## Functions available: What it does
 
 Logs in with your API keys from another file (bikeys.py). Consider a .ini for added security.
 
-Keeps exception logs of any errors with the Rest API/functions/program in a txt file with traceback.
+Keeps exception logs of any errors with the Rest API/functions/program written in a file with traceback.
 
-Identifies the overal bigger picture, 1 Hr candls or 2hr candls if sideways to return trend: 'UP', 'DWN' or 'SIDEWYS'
+Identifies the overal bigger picture trend, 1 Hr candls or 2hr candls if sideways to return trend: 'UP', 'DWN' or 'SIDEWYS'
 
-You can build (and easily write) your own strategy, could be Moving averages, MACD, VWAP or etc. based 
-# NOT TESTED: Strategy present here runs, most likely not profitable (email me: carlo.fernandezben@gmail.com to write one)
+You can build (and easily write) your own strategy, could be based on Moving averages, MACD, VWAP, combined or etc. 
+# NOT TESTED: The strategy present here just runs, most likely it is not profitable (email me: carlo.fernandezben@gmail.com to write one)
 
 Goes Long or Short depending on the trend and the strategy chosen, and starts looking for similar pairs faster to trade when volatility increases.
 
 Revises and corrects the position in case there is any fault or exception in the process.
 
-Plots and saves an .html file of the chart when going long or short.
+Plots and graphs a snapshot of the chart when going long or short indicating the Take profit point and Stop loss.
 
-Continuosly checks the open long TP or short orders and cancels them if trend is oposite to the position or any other desired price condition.
+Continuosly checks the open long TP or short orders and cancels them if trend is oposite to the position or any other desired price or indicator condition.
 
 Use of any DB is not necessary/optional. All in one fast/lite program to trade and leave running when profitable.
 
 ## Technologies
-Project is created with:
+Project is a Rest API program created with:
 * python: 3.7
 
 	
 ## Setup
-To run this project, install python and run in a virtual env the needed libraries can be installed with pip:
+To run this project, install python and run in a virtual env the needed libraries can be added with pip install:
 
 ```
 $ pandas
