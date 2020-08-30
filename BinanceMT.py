@@ -28,9 +28,9 @@ trend_count = 0
 client = Client(api_key=bikeys.Pass, api_secret=bikeys.Sec)
 global trend
 
-pairs = ['BTCBUSD', 'BCHBUSD', 'LTCBUSD', 'ETHBUSD', 'ETCBUSD', 'XRPBUSD',
-'EOSBUSD', 'LINKBUSD', 'XTZBUSD', 'BNBBUSD', 'ZILBUSD', 'EOSBUSD', 'ALGOBUSD', 
-'ADABUSD', 'SXPBUSD']
+pairs = ['BTCUSDT', 'BCHABCUSDT', 'LTCUSDT', 'ETHUSDT', 'ETCUSDT', 'DASHUSDT',
+'EOSUSDT', 'LINKUSDT', 'BNBUSDT', 'ZILUSDT', 'VETUSDT', 'ADAUSDT', 'XRPUSDT', 
+'RVNUSDT']
 
 def Trend(pair):
     global trend_count
@@ -424,54 +424,54 @@ def OpenOrder(price):
         print(f'There are no open orders for {altc}')
 
 def RepayUSD():
-    print(f'^ Checking free balances on BUSD')
-    info = client.get_symbol_info(symbol='ADABUSD')
+    print(f'^ Checking free balances on USDT')
+    info = client.get_symbol_info(symbol='ADAUSDT')
     minimum = float(info['filters'][2]['minQty']) # 'minQty'
     dict_balanc = client.get_margin_account()
     balances = (dict_balanc['userAssets'])
     for i in balances:
-        if str('BUSD') == i['asset'] and float(i['free']) > 0.00001 and float(i['borrowed']) > 10:
+        if str('USDT') == i['asset'] and float(i['free']) > 0.00001 and float(i['borrowed']) > 10:
                 loaned = float(i['borrowed'])
                 quant = float(i['free'])
                 print(f'There are {quant} USD free, waiting')
                 quant1 = D.from_float(quant).quantize(D(str(minimum)), rounding=ROUND_DOWN)
-                print(f'The balance of BUSD wallet is {quant1}')
+                print(f'The balance of USDT wallet is {quant1}')
                 sleep(5)
                 dict_balanc = client.get_margin_account()
                 balances = (dict_balanc['userAssets'])
                 for i in balances:
-                    if str('BUSD') == i['asset'] and float(i['free']) > 0.00001:
+                    if str('USDT') == i['asset'] and float(i['free']) > 0.00001:
                             quant2 = float(i['free'])
                             print(f'There are {quant2} USD free, comparing')
                             quant2 = D.from_float(quant2).quantize(D(str(minimum)), rounding=ROUND_DOWN)
                 if float(quant) > 10 and quant1 == quant2 and loaned > 10:
-                    print(f'Checking BUSD for a repay of the free amount')
+                    print(f'Checking USDT for a repay of the free amount')
                     try:
                         quant = D.from_float(quant).quantize(D(str(minimum)))
-                        repay = client.repay_margin_loan(asset='BUSD', amount= quant)
+                        repay = client.repay_margin_loan(asset='USDT', amount= quant)
                         print(f'Repayed the collateral for {pair} 1st try')
                     except Exception as e:
                         traceback.print_exc(file=log)
                         print(e)
                         try:
-                            repay = client.repay_margin_loan(asset='BUSD', amount= quant)
+                            repay = client.repay_margin_loan(asset='USDT', amount= quant)
                             print(f'Repayed the collateral for {pair} 2nd try')
                         except Exception as e:
                             traceback.print_exc(file=log)
                             print(e)
                 if float(quant) > 10 and quant1 == quant2 and float(quant) > loaned:
-                    print(f'Checking BUSD for a repay of the free amount')
+                    print(f'Checking USDT for a repay of the free amount')
                     try:
                         loaned = D.from_float(loaned).quantize(D(str(minimum)), rounding=ROUND_DOWN)
-                        repay = client.repay_margin_loan(asset='BUSD', amount= loaned)
-                        print(f'Repayed the collateral for BUSD 1st try')
+                        repay = client.repay_margin_loan(asset='USDT', amount= loaned)
+                        print(f'Repayed the collateral for USDT 1st try')
                     except Exception as e:
                         traceback.print_exc(file=log)
                         print(e)
                 if float(quant) > 10 and loaned > 10:
-                    repay = client.repay_margin_loan(asset='BUSD', amount= quant)
-                    print(f'Repayed the collateral for BUSD 1st try')
-        elif str('BUSD') == i['asset'] and float(i['borrowed']) < 10:
+                    repay = client.repay_margin_loan(asset='USDT', amount= quant)
+                    print(f'Repayed the collateral for USDT 1st try')
+        elif str('USDT') == i['asset'] and float(i['borrowed']) < 10:
             print('No borrowed amount')
 
 def RepayAltc():
@@ -482,7 +482,7 @@ def RepayAltc():
     balances = (dict_balanc['userAssets'])
     for i in balances:
         dollars = 0
-        if str('BUSD') == i['asset'] and float(i['free']) > 10:
+        if str('USDT') == i['asset'] and float(i['free']) > 10:
             dollars = float(i['free'])
         if str(altc) == i['asset'] and float(i['free']) >= minimum and float(i['borrowed']) >= minimum:
                 loan = float(i['borrowed'])
@@ -562,16 +562,16 @@ def Long(pair):
         price = ticker['price']
         price = float(price)
         price = float("{0:.5f}".format(price))
-        max_loan = client.get_max_margin_loan(asset='BUSD') # Whats the max margin I get?
+        max_loan = client.get_max_margin_loan(asset='USDT') # Whats the max margin I get?
         max_loan = float(max_loan['amount'])
         loan = max_loan/6
         loan = float(loan)
         loan = float("{0:.5f}".format(loan))
         print(f' the loan amnt is {loan} out of the max of: {max_loan}')
         if max_loan >= 130 and profit > 1.00933:
-            transaction = client.create_margin_loan(asset='BUSD', amount=loan)  # Borrows longing asset prepares to Buy> Sale Higher > Repay BUSD
+            transaction = client.create_margin_loan(asset='USDT', amount=loan)  # Borrows longing asset prepares to Buy> Sale Higher > Repay USDT
             print(transaction)
-            asset = 'BUSD'
+            asset = 'USDT'
             info = client.get_symbol_info(symbol=pair)
             minimum = float(info['filters'][2]['minQty']) # 'minQty'
             price_filter = float(info['filters'][0]['tickSize'])
@@ -579,14 +579,14 @@ def Long(pair):
             quant = loan/float(price)
             quant = D.from_float(quant).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
             try:
-                print(f'Borrowed BUSD and Market buying {altc}')
+                print(f'Borrowed USDT and Market buying {altc}')
                 order = client.create_margin_order(
                     symbol= pair,
                     side=SIDE_BUY,
                     type=ORDER_TYPE_MARKET,
                     quantity=quant)
                 sleep(21)
-                print(f'Borrowed BUSD and Market bought {altc}')
+                print(f'Borrowed USDT and Market bought {altc}')
             except Exception as e:
                 traceback.print_exc(file=log)
                 print(e)
@@ -601,7 +601,7 @@ def Long(pair):
                         timeInForce=TIME_IN_FORCE_GTC,
                         quantity=quant,
                         price=price)
-                    print(f'Borrowed BUSD and bought {altc}, waiting on order to go trw')
+                    print(f'Borrowed USDT and bought {altc}, waiting on order to go trw')
                     sleep(16)
                 except Exception as e:
                     dict_balanc = client.get_margin_account()
@@ -619,7 +619,7 @@ def Long(pair):
                                     timeInForce=TIME_IN_FORCE_GTC,
                                     quantity=quant,
                                     price=price)
-                                print(f'Borrowed BUSD and bought {altc}, waiting on order to go trw')
+                                print(f'Borrowed USDT and bought {altc}, waiting on order to go trw')
                     traceback.print_exc(file=log)
                     print(e)
             try:
@@ -646,7 +646,7 @@ def Long(pair):
                     quantity=quant,
                     price=price)
                 print(f' *******Limit SELL order made: {quant} of {altc} * @ * {price} *****')
-                print(f'Borrowed BUSD and bought {altc}, set TP at {price} for {altc}')
+                print(f'Borrowed USDT and bought {altc}, set TP at {price} for {altc}')
                 Plot(pair, profit)
             except Exception as e:
                 traceback.print_exc(file=log)
@@ -664,7 +664,7 @@ def Long(pair):
                         quantity=quant,
                         price=price)
                     print(f' *******Limit SELL order made: {quant} of {altc} * @ * {price} *****')
-                    print(f'Borrowed BUSD and bought {altc}, set TP at {price} for {altc}')
+                    print(f'Borrowed USDT and bought {altc}, set TP at {price} for {altc}')
                     Plot(pair, profit)
                 except Exception as e:
                     traceback.print_exc(file=log)
@@ -681,7 +681,7 @@ def Long(pair):
                             quantity=quant,
                             price=price)
                         print(f' *******Limit SELL order made: {quant} of {altc} * @ * {price} *****')
-                        print(f'Borrowed BUSD and bought {altc}, set TP at {price} for {altc}')
+                        print(f'Borrowed USDT and bought {altc}, set TP at {price} for {altc}')
                         Plot(pair, profit)
                     except Exception as e:
                         traceback.print_exc(file=log)
@@ -697,7 +697,7 @@ def Long(pair):
                                 quantity=quant,
                                 price=price)
                             print(f' *******Limit SELL order made: {quant} of {altc} * @ * {price} *****')
-                            print(f'Borrowed BUSD and bought {altc}, set TP at {price} for {altc}')
+                            print(f'Borrowed USDT and bought {altc}, set TP at {price} for {altc}')
                             Plot(pair, profit)
                         except Exception as e:
                             traceback.print_exc(file=log)
@@ -741,7 +741,7 @@ def Short(pair):
                     type=ORDER_TYPE_MARKET,
                     quantity=quant)
                 sleep(20)
-                print(f'Borrowed {altc} and market sold FOR BUSD')
+                print(f'Borrowed {altc} and market sold FOR USDT')
             except Exception as e:
                 print(f'Error with Order trying again ***************')
                 traceback.print_exc(file=log)
@@ -768,7 +768,7 @@ def Short(pair):
                             type=ORDER_TYPE_MARKET,
                             quantity=quant)
                         sleep(16)
-                        print(f'Sold {altc} at market FOR BUSD')
+                        print(f'Sold {altc} at market FOR USDT')
                     except Exception as e:
                         try:
                             info = client.get_symbol_info(symbol=pair)
@@ -810,7 +810,7 @@ def Short(pair):
                                     side=SIDE_SELL,
                                     type=ORDER_TYPE_MARKET,
                                     quantity=quant)
-                                print(f'Sold {altc} at market for ~{quant*price} BUSD')
+                                print(f'Sold {altc} at market for ~{quant*price} USDT')
                             except BinanceAPIException as e:
                                 traceback.print_exc(file=log)
                                 print(f'*****   Error with the order reverted and repyaing margin ************!!!!')
@@ -840,11 +840,11 @@ def Short(pair):
             dict_balanc = client.get_margin_account()
             balances = (dict_balanc['userAssets'])
             for i in balances:
-                if str('BUSD') == i['asset'] and float(i['free']) > 0.00:
+                if str('USDT') == i['asset'] and float(i['free']) > 0.00:
                         quant1 = float(i['free'])
                         print(quant)
                         quant1 = D.from_float(quant1).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
-                        print(f'The fucking balance of BUSD wallet is {quant1}')
+                        print(f'The fucking balance of USDT wallet is {quant1}')
             print(f'TP planned at {2-profit} parts of {quant} at price of: {price} for {altc}')
             try:
                 order = client.create_margin_order(
@@ -855,7 +855,7 @@ def Short(pair):
                     quantity=quant,
                     price=price)
                 print(f' *******Limit BUY order made: {quant} of {altc} * @ * {price} *****')
-                print(f'Borrowed BUSD and bought {altc}, setting TP at {profit}at: {price} for {altc}')
+                print(f'Borrowed USDT and bought {altc}, setting TP at {profit}at: {price} for {altc}')
                 ShortPlot(pair, profit)
             except Exception as e:
                 traceback.print_exc(file=log)
@@ -870,7 +870,7 @@ def Short(pair):
                         quantity=quant,
                         price=price)
                     print(f' *******Limit BUY order made: {quant} of {altc} * @ * {price} *****')
-                    print(f'Borrowed BUSD and bought {altc}, setting TP at {profit}at: {price} for {altc}')
+                    print(f'Borrowed USDT and bought {altc}, setting TP at {profit}at: {price} for {altc}')
                     ShortPlot(pair, profit)
                 except Exception as e:
                     traceback.print_exc(file=log)
