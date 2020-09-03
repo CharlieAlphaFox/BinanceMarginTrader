@@ -17,7 +17,6 @@ import numpy as np
 import traceback
 import datetime
 import decimal
-import hmac
 import time
 import bikeys
 
@@ -723,7 +722,7 @@ def Short(pair):
         loan = float(loan)
         loan = float("{0:.5f}".format(loan))
         print(f' the loan amnt is {loan} out of the max of: {max_loan}')
-        if max_loan >= 148/price and float(profit) > 1.00933:
+        if max_loan >= 130/price and float(profit) > 1.00933:
             transaction = client.create_margin_loan(asset=altc, amount=loan)  # Borrows shorting asset prepares to SELL> Rebuy lower > Repay altc
             print(transaction)
             asset = altc
