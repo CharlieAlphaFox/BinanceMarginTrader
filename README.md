@@ -27,6 +27,8 @@ Logs in with your API keys from another file (bikeys.py). Consider a .ini for ad
 
 Keeps exception logs of any errors with the Rest API/functions/program written in a file with traceback.
 
+Gets historical data from the API and organizes it in a dataframe with OCHLV + VWAP and others values to then analize it.
+
 Identifies the overal bigger picture trend, 1 Hr candls or 2hr candls if sideways to return trend: 'UP', 'DWN' or 'SIDEWYS'
 
 You can build (and easily write) your own strategy, could be based on Moving averages, MACD, VWAP, combined or etc. 
@@ -36,7 +38,7 @@ Goes Long or Short depending on the trend and the strategy chosen, and starts lo
 
 Revises and corrects the position in case there is any fault or exception in the process.
 
-Plots and graphs a snapshot of the chart when going long or short indicating the Take profit point and Stop loss.
+Plots and graphs a snapshot of the chart when going long or short indicating the Take profit point and Stop loss prices.
 
 Continuosly checks the open long TP or short orders and cancels them if trend is oposite to the position or any other desired price or indicator condition.
 
