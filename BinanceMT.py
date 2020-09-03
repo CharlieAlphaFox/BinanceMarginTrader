@@ -128,7 +128,6 @@ def Strategy(pair): # Gets precise Precise data and act from it.
     global altc
     global price
     global profit
-    global pairsmas
     global long
     global short
     global up_bb
