@@ -609,7 +609,7 @@ def Long(pair):
                                 quant = float(i['free'])
                                 print(quant)
                                 quant = D.from_float(quant).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
-                                print(f'The fucking balance of {altc} wallet is {quant}')
+                                print(f'The balance of {altc} wallet is {quant}')
                                 order = client.create_margin_order(
                                     symbol= pair,
                                     side=SIDE_BUY,
@@ -781,7 +781,7 @@ def Short(pair):
                                         quant1 = float(i['free'])
                                         print(f'There are {quant1} {altc} free')
                                         sleep(2)
-                                        print(f'The fucking balance of {altc} wallet is {quant}')
+                                        print(f'The balance of {altc} wallet is {quant}')
                             quant = D.from_float(quant1).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
                             order = client.create_margin_order(
                                 symbol= pair,
@@ -802,7 +802,7 @@ def Short(pair):
                                             quant = float(i['free'])
                                             print(quant)
                                             quant = D.from_float(quant).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
-                                            print(f'The fucking balance of {altc} wallet is {quant}')
+                                            print(f'The balance of {altc} wallet is {quant}')
                                 order = client.create_margin_order(
                                     symbol= pair,
                                     side=SIDE_SELL,
@@ -842,7 +842,7 @@ def Short(pair):
                         quant1 = float(i['free'])
                         print(quant)
                         quant1 = D.from_float(quant1).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
-                        print(f'The fucking balance of USDT wallet is {quant1}')
+                        print(f'The balance of USDT wallet is {quant1}')
             print(f'TP planned at {2-profit} parts of {quant} at price of: {price} for {altc}')
             try:
                 order = client.create_margin_order(
