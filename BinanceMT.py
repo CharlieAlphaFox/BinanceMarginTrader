@@ -771,7 +771,7 @@ def Short(pair):
                         try:
                             info = client.get_symbol_info(symbol=pair)
                             price_filter = float(info['filters'][0]['tickSize'])
-                            price = D.from_float(price).quantize(D(str(price_filter)))
+                            price = D.from_float(price).quantize(D(price_filter))
                             minimum = float(info['filters'][2]['minQty']) # 'minQty'
                             quant = loan
                             dict_balanc = client.get_margin_account()
