@@ -474,48 +474,49 @@ def RepayUSD():
 
 def RepayAltc():
     print(f'^ Checking free balances on {altc}')
+    ticker = client.get_symbol_ticker(symbol=pair)
+    price = ticker['price']
     info = client.get_symbol_info(symbol=pair)
     minimum = float(info['filters'][2]['minQty']) # 'minQty'
     dict_balanc = client.get_margin_account()
     balances = (dict_balanc['userAssets'])
     for i in balances:
-        dollars = 0
-        if str('USDT') == i['asset'] and float(i['free']) > 10:
-            dollars = float(i['free'])
-        if str(altc) == i['asset'] and float(i['free']) >= minimum and float(i['borrowed']) >= minimum:
-                loan = float(i['borrowed'])
-                loaned = float("{0:.6f}".format(loan))
-                quant = float(i['free'])
-                print(f'There are {quant} {altc} free, waiting')
-                quant1 = D.from_float(quant).quantize(D(str(minimum)), rounding=ROUND_DOWN)
-                print(f'The balance of {altc} wallet is {quant1}')
-                sleep(7)
-                dict_balanc = client.get_margin_account()
-                balances = (dict_balanc['userAssets'])
-                if loaned > minimum:
-                    if noShortPosition and noLongPosition:
+        if str(altc) == i['asset']:
+            asset = i
+            for key, value in asset.items():
+                if key == 'free' and float(value) >= 0.00001:
+                    quant = float(value)
+                    if key == 'borrowed' and float(value) >= 10.1/float(price):
+                        loan = float(value)
+                        print(f'There are {quant} {altc} free, waiting')
+                        quant1 = D.from_float(quant).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
+                        print(f'The balance of {altc} wallet is {quant1}')
+                        sleep(3)
                         try:
+                            quant = D.from_float(quant).quantize(D(str(minimum)))
                             repay = client.repay_margin_loan(asset=altc, amount= quant)
                             print(f'Repayed the {altc} debt')
                         except Exception as e:
                             traceback.print_exc(file=log)
-                            print(e)
+                            print(traceback.format_exc())
+                            sleep(3.3)
                             try:
                                 loaned = quant - loaned
-                                loaned=D.from_float(loaned).quantize(D(str(minimum)))
+                                loaned = D.from_float(loaned).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
                                 order = client.create_margin_order(
                                     symbol= pair,
                                     side=SIDE_BUY,
                                     type=ORDER_TYPE_MARKET,
                                     quantity=loaned)
                                 print(f'Market bought {altc} to repay borrowed debt')
-                                sleep(20)
+                                sleep(16)
                                 repay = client.repay_margin_loan(asset=altc, amount= quant)
                                 print(f'Repayed the {altc} debt')
                             except Exception as e:
                                 traceback.print_exc(file=log)
-                                print(e)
+                                print(traceback.format_exc())
                                 try:
+                                    loaned = D.from_float(loan).quantize(D(str(minimum)), rounding= decimal.ROUND_DOWN)
                                     order = client.create_margin_order(
                                         symbol= pair,
                                         side=SIDE_BUY,
@@ -527,31 +528,37 @@ def RepayAltc():
                                     print(f'Market bought {altc} to repay borrowed debt')
                                 except Exception as e:
                                     traceback.print_exc(file=log)
-                                    print(e)
+                                    print(traceback.format_exc())
                                     try:
+                                        loaned = D.from_float(loan).quantize(D(str(minimum)))
                                         order = client.create_margin_order(
                                             symbol= pair,
                                             side=SIDE_BUY,
                                             type=ORDER_TYPE_MARKET,
                                             quantity=loaned)
                                         print(f'Market bought {altc} to repay borrowed debt')
-                                        sleep(20)
+                                        sleep(16)
                                         repay = client.repay_margin_loan(asset=altc, amount= dollars)
                                         print(f'Market bought {altc} to repay borrowed debt')
                                     except Exception as e:
                                         traceback.print_exc(file=log)
+                                        print(traceback.format_exc())
                                         print(e)
-                    elif noShortPosition and noLongPosition:
-                        try:
-                            repay = client.repay_margin_loan(asset=altc, amount= quant)
-                            print(f'Repayed the {altc} debt')
-                        except Exception as e:
-                            repay = client.repay_margin_loan(asset=altc, amount= loaned)
-                            print(f'Repayed the {altc} debt on 2nd try')
-                            traceback.print_exc(file=log)
-                            print(e)
-        elif str(altc) == i['asset'] and float(i['borrowed']) < 0.00001:
-            print('No borrowed amount')
+                elif key == 'borrowed' and float(value) >= minimum:
+                    loaned = float(value)
+                    if key == 'free' and float(value) > float(loaned):
+                        free = float(value)
+                        loaned = D.from_float(free).quantize(D(str(minimum)))
+                        if free >= 0.0001:
+                            try:
+                                print(f'there is {free} amount of {altc} here')
+                                repay = client.repay_margin_loan(asset=altc, amount= loaned)
+                                print(f'Repayed the {altc} debt in the 1st try')
+                            except Exception as e:
+                                print(f'there is {free} amount of {altc} here')
+                                traceback.print_exc(file=log)
+                                print(traceback.format_exc())
+                                print(e)
 
 def Long(pair):
     try:
