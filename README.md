@@ -32,7 +32,7 @@ Gets historical data from the API and organizes it in a dataframe with OCHLV + V
 Identifies the overal bigger picture trend, 1 Hr candls or 2hr candls if sideways to return trend: 'UP', 'DWN' or 'SIDEWYS'
 
 You can build (and easily write) your own strategy, could be based on Moving averages, MACD, VWAP, combined or etc. 
-# NOT TESTED: The strategy present here just runs, most likely it is not profitable (email me: carlo.fernandezben@gmail.com to write one)
+# NOT TESTED: The strategy present here just runs, most likely it is not profitable (contact me: https://www.linkedin.com/in/carlo-fernandez-benedetto/ to write one)
 
 Goes Long or Short depending on the trend and the strategy chosen, and starts looking for similar pairs faster to trade when volatility increases.
 
@@ -50,7 +50,7 @@ Project is a Rest API program created with:
 
 	
 ## Setup
-To run this project, install python and run in a virtual env the needed libraries can be added with pip install:
+To run this project, install python and run in a virtual env the needed libraries can be added with pip install..:
 
 ```
 $ pandas
